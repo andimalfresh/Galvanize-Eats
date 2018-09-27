@@ -57,7 +57,7 @@ footer {
     font-size: 2em;
 
 }
-.api-side {
+.apiSide {
     height: 750px;
     width: 350px;
     border-color: teal;
@@ -67,7 +67,12 @@ footer {
     margin-right:100px;
     display: flex;
     flex-direction: column;
+    justify-content: left;
 }
+ul {
+list-style-type: none;
+}
+
 .order-side {
     height: 750px;
     width: 350px;
@@ -84,9 +89,4 @@ footer {
         border-radius: 15px;
         font-size: 2em;
         margin-top: 50px;
-}
-
-.customerInformation {
-    justify-content: center;
-    align-items: bottom;
-}
+}   
