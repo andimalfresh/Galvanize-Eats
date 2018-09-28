@@ -90,3 +90,13 @@ list-style-type: none;
         font-size: 2em;
         margin-top: 50px;
 }   
+.apiButton {
+    background-color: teal;
+    color: white;
+    height: 100px;
+    margin: 25px;
+}
+.customerInput li {
+    margin: 25px;
+    
+}
