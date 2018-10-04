@@ -23,20 +23,30 @@
             <div class="col-sm apiSide">
                 <div class='foodAndPriceList'>
                 </div>
-
-            </div>
-
-            <div class="col-sm order-side">
+                <div class='row sendBox'>
+                    <input type='text' id='quantityBox' placeholder='Qty'><Button class='addItem'>Add
+                        Item</Button>
+                </div>
                 <form class="customerInput">
                     <ul>
-                        <li><input class='inputBox' placeholder='First Name:' type='text' name='First Name'></li>
-                        <li><input class='inputBox' placeholder='Last Name:' type='text' name='First Name'></li>
-                        <li><input class='inputBox' placeholder='Phone:' type='number' name='First Name'></li>
-                        <li><input class='inputBox' placeholder='Address:' type='text' name='First Name'></li>
-                        <li><button type='submit' id='submitInfo'>Save Info</button></li>
+                        <li><input class='nameBox' placeholder='Name:' type='text' name='Name'></li>
+                        <li><input class='numberBox' placeholder='Phone:' type='number' name='First Name'></li>
+                        <li><input class='addressBox' placeholder='Address:' type='text' name='First Name'></li>
                     </ul>
+                    <button class='sendButton' name='DeliverButton'>Deliver It</button>
                 </form>
-                <div class='dropbox'></div>
+            </div>
+
+            <div class='col-sm order-side'>
+                <div class='dropBox'>
+                </div>
+                <div class='orderUp'>
+                    <ul>
+                        <li>subtotal: <span></span></li>
+                        <li>tax: <span></span></li>
+                        <li>grandTotal: <span></span></li>
+                    </ul>
+                </div>
             </div>
 
         </div>

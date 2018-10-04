@@ -3,7 +3,6 @@ body {
     width: 100vw;
 }
 .container {
-    /* background-color: rgb(32, 82, 139); */
     margin: 50px;
     height: auto;
     width: auto;
@@ -93,10 +92,21 @@ list-style-type: none;
 .apiButton {
     background-color: teal;
     color: white;
-    height: 100px;
-    margin: 25px;
+    height: 50px;
+    margin: 5px;
 }
 .customerInput li {
-    margin: 25px;
-
+    margin: 10px;
+}
+.dropBox {
+    height:550px;
+}
+.orderUp {
+    display: flex;
+    justify-content: right;
+    align-items: bottom;
+    height:200px;
+}
+.sendBox {
+    margin:50px;
 }
