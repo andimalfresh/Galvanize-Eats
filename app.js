@@ -7,7 +7,7 @@ var quantityMultiplier = 0
 var pullName = ''
 var pullNumber = ''
 var pullAddress = ''
-
+var subTotal = 0
 
 function printNames() {
     fetch('https://galvanize-eats-api.herokuapp.com/menu')
@@ -34,13 +34,26 @@ function printNames() {
 printNames()
 // Add Quantity Function
 
+
 var addItemButton = document.querySelector('.addItem')
 addItemButton.addEventListener('click', function (event) {
     event.preventDefault()
     let getQuantity = parseInt(document.getElementById('quantityBox').value)
     quantityMultiplier += getQuantity
-    console.log(getQuantity)
-    // document.querySelector('.foodAndPriceList')
+    var selectDrop = document.querySelector('.dropBox')
+    for (var j = 0; j < orderItemArray.length; j++) {
+        var p = document.createElement('p')
+        selectDrop.appendChild(p).innerText = orderItemArray[j] + ' ' + orderPriceArray[j]
+        subTotal += parseFloat(orderPriceArray[j]).toFixed(2)
+
+    }
+    var pushTotal = document.getElementById('subtotal')
+    pushTotal.innerText += parseFloat(subTotal).toFixed(2)
+    var pushTax = document.getElementById('tax')
+    pushTax.innerText += parseFloat(subTotal * .2).toFixed(2)
+    var pushGrand = document.getElementById('gTotal')
+    // var finalGrandTotal = parseFloat(subTotal).toFixed(2) + parseFloat(subTotal * .2).toFixed(2)
+    pushGrand.innerText += parseFloat(pushTotal.innerText).toFixed(2) + parseFloat(pushTax.innerText).toFixed(2)
 })
 // Post EVERYTHING  FUNCTION
 var sendButton = document.querySelector('.sendButton')
@@ -49,11 +62,6 @@ sendButton.addEventListener('click', function (event) {
     document.getElementById('nameBox')
 
     console.log("Send Button Pushed")
-})
-
-var buttonListen = document.querySelector('.apiButton')
-buttonListen.addEventListener('click', function (event) {
-    console.log('Fufu')
 })
 
 
