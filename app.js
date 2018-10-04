@@ -8,7 +8,7 @@ var pullName = ''
 var pullNumber = ''
 var pullAddress = ''
 var subTotal = 0
-
+var orderPriceArrayAdded = 0
 function printNames() {
     fetch('https://galvanize-eats-api.herokuapp.com/menu')
         .then((data) => data.json())
@@ -32,67 +32,43 @@ function printNames() {
         })
 }
 printNames()
-// Add Quantity Function
-
-
 var addItemButton = document.querySelector('.addItem')
 addItemButton.addEventListener('click', function (event) {
     event.preventDefault()
     let getQuantity = parseInt(document.getElementById('quantityBox').value)
     quantityMultiplier += getQuantity
     var selectDrop = document.querySelector('.dropBox')
-    for (var j = 0; j < orderItemArray.length; j++) {
-        var p = document.createElement('p')
-        selectDrop.appendChild(p).innerText = orderItemArray[j] + ' ' + orderPriceArray[j]
-        subTotal += parseFloat(orderPriceArray[j]).toFixed(2)
-
+    for (var i = 0; i < quantityMultiplier; i++) {
+        for (var j = 0; j < orderItemArray.length; j++) {
+            var p = document.createElement('p')
+            selectDrop.appendChild(p).innerText = orderItemArray[j] + ' ' + orderPriceArray[j]
+        }
     }
     var pushTotal = document.getElementById('subtotal')
-    pushTotal.innerText += parseFloat(subTotal).toFixed(2)
+    for (var i = 0; i < orderPriceArray.length; i++) {
+        orderPriceArrayAdded += parseFloat(orderPriceArray[i])
+    }
+    pushTotal.innerText = orderPriceArrayAdded * quantityMultiplier
     var pushTax = document.getElementById('tax')
-    pushTax.innerText += parseFloat(subTotal * .2).toFixed(2)
-    var pushGrand = document.getElementById('gTotal')
-    // var finalGrandTotal = parseFloat(subTotal).toFixed(2) + parseFloat(subTotal * .2).toFixed(2)
-    pushGrand.innerText += parseFloat(pushTotal.innerText).toFixed(2) + parseFloat(pushTax.innerText).toFixed(2)
+    pushTax.innerText = ((orderPriceArrayAdded * quantityMultiplier) * .2).toFixed(2)
+    var pushgTotal = document.getElementById('gTotal')
+    pushgTotal.innerText = (((orderPriceArrayAdded * quantityMultiplier) * .2) + (orderPriceArrayAdded * quantityMultiplier)).toFixed(2)
 })
-// Post EVERYTHING  FUNCTION
+
+// Post EVERYTHING  FUNCTION 
 var sendButton = document.querySelector('.sendButton')
 sendButton.addEventListener('click', function (event) {
     event.preventDefault()
-    document.getElementById('nameBox')
-
+    var name = document.getElementById('nameBox').innerText
+    console.log(name)
+    var phone = document.getElementById('numberBox').innerText
+    console.log(phone)
+    var address = document.getElementById('addressBox').innerText
+    console.log(address)
     console.log("Send Button Pushed")
 })
 
 
 
-// var pushSide = document.querySelector('.dropBox')
-// var newOrderItem = document.createElement('p')
-// pushSide.parentNode.insertBefore(newOrderItem, pushSide)
-// document.querySelector('.dropBox').innerHTML += event.target.name + ' ' + event.target.value
-// eatsTotental += parseFloat(event.target.value).toFixed(2)
-// console.log(eatsTotal)
 
-
-
-
-
-
-
-
-
-
-
-// var getButton = document.querySelectorAll('.apibutton')
-// console.log(getButton)
-
-
-
-// var getFormSubmit = document.getElementById('#submitInfo')
-// getFormSubmit.addEventListener('click', function () {
-//     console.log('foo')
-// })
-// var customerInfoSaved = getFormSubmit.addEventListener('click', function () {
-//     console.log('button clicked')
-// })
 
