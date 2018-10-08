@@ -1,12 +1,6 @@
-var eatsTotal = 0
-var orders = {}
-var newOrderItem = {}
 var orderItemArray = []
 var orderPriceArray = []
 var quantityMultiplier = 0
-var pullName = ''
-var pullNumber = ''
-var pullAddress = ''
 var subTotal = 0
 var orderPriceArrayAdded = 0
 function printNames() {
@@ -54,19 +48,23 @@ addItemButton.addEventListener('click', function (event) {
     var pushgTotal = document.getElementById('gTotal')
     pushgTotal.innerText = (((orderPriceArrayAdded * quantityMultiplier) * .2) + (orderPriceArrayAdded * quantityMultiplier)).toFixed(2)
 })
-
-// Post EVERYTHING  FUNCTION 
-var sendButton = document.querySelector('.sendButton')
-sendButton.addEventListener('click', function (event) {
+var submitButton = document.querySelector('input[type=button]')
+submitButton.addEventListener('submit', submitForm)
+var form = document.querySelector('form')
+form.addEventListener('submit', submitForm)
+function submitForm(event) {
     event.preventDefault()
-    var name = document.getElementById('nameBox').innerText
-    console.log(name)
-    var phone = document.getElementById('numberBox').innerText
-    console.log(phone)
-    var address = document.getElementById('addressBox').innerText
-    console.log(address)
-    console.log("Send Button Pushed")
-})
+    fetch('https://galvanize-eats-api.herokuapp.com/orders', settings)
+        .then(function (responce) {
+            console.log(responce)
+        })
+}
+    // var settings = {
+    //     method: 'POST',
+    //     headers: { 'content type': 'application/JSON' },
+    //     body: JSON.stringify.data,
+    // }
+    //     .then((data => data.JSON())
 
 
 
