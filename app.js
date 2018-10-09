@@ -3,6 +3,14 @@ var orderPriceArray = []
 var quantityMultiplier = 0
 var subTotal = 0
 var orderPriceArrayAdded = 0
+var orderObject = {
+}
+var pushedSubtotal = 0
+var pushedTax = 0
+var pushedTotal = 0
+
+
+
 function printNames() {
     fetch('https://galvanize-eats-api.herokuapp.com/menu')
         .then((data) => data.json())
@@ -48,17 +56,49 @@ addItemButton.addEventListener('click', function (event) {
     var pushgTotal = document.getElementById('gTotal')
     pushgTotal.innerText = (((orderPriceArrayAdded * quantityMultiplier) * .2) + (orderPriceArrayAdded * quantityMultiplier)).toFixed(2)
 })
-var submitButton = document.querySelector('input[type=button]')
-submitButton.addEventListener('submit', submitForm)
-var form = document.querySelector('form')
-form.addEventListener('submit', submitForm)
-function submitForm(event) {
+
+var sendButtonSelection = document.querySelector('.sendButton')
+sendButtonSelection.addEventListener('click', function () {
     event.preventDefault()
-    fetch('https://galvanize-eats-api.herokuapp.com/orders', settings)
-        .then(function (responce) {
-            console.log(responce)
-        })
-}
+    var nameInput = document.querySelector('.nameBox')
+    var name = nameInput.value
+    var numberInput = document.querySelector('.numberBox')
+    var number = numberInput.value
+    var addressInput = document.querySelector('.addressBox')
+    var address = addressInput.value
+
+
+    Object.assign(orderObject, { Name: name })
+    Object.assign(orderObject, { Number: number })
+    Object.assign(orderObject, { Address: address })
+    Object.assign(orderObject, { Subtotal: 9879 })
+    Object.assign(orderObject, { Tax: 98 })
+    Object.assign(orderObject, { Total: 1000000 })
+
+})
+
+
+
+
+
+
+
+
+
+// var submitButton = document.querySelector('input[type=button]')
+// submitButton.addEventListener('.submit', submitForm)
+// var form = document.querySelector('form')
+// form.addEventListener('submit', submitForm)
+// console.log("Form Submit")
+// function submitForm(event) {
+//     event.preventDefault()
+//     fetch('https://galvanize-eats-api.herokuapp.com/orders', settings)
+//         .then(function (responce) {
+//             console.log(responce)
+//         })
+// }
+
+
     // var settings = {
     //     method: 'POST',
     //     headers: { 'content type': 'application/JSON' },
