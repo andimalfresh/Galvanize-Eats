@@ -72,6 +72,7 @@ sendButtonSelection.addEventListener('click', function (event) {
     var address = addressInput.value
     var subTotal = orderPriceArrayAdded * quantityMultiplier
     var salesTax = parseInt(((orderPriceArrayAdded * quantityMultiplier) * 0.2).toFixed(2))
+    var salesTaxFinal = parseInt(salesTax)
     function getItems() {
         for (var i = 0; i < quantityMultiplier; i++) {
             for (var j = 0; j < orderItemArray.length; j++) {
@@ -87,54 +88,15 @@ sendButtonSelection.addEventListener('click', function (event) {
     Object.assign(orderObject, { Tax: salesTax })
     Object.assign(orderObject, { Total: subTotal + salesTax })
     Object.assign(orderObject, { OrderItems: itemsForOrder })
+    console.log(orderObject)
 
-    fetch('https://galvanize-eats-api.herokuapp.com/orders', settings)
+    fetch('https://galvanize-eats-api.herokuapp.com/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderObject)
+    })
         .then(function (responce) {
             console.log(responce)
         })
-
-    var settings = {
-        method: 'POST',
-        headers: { 'content type': 'application/JSON' },
-        body: JSON.stringify.orderObject,
-    }
-        .then((orderObject => orderObject.JSON()))
+    console.log(JSON.stringify(orderObject))
 })
-
-
-// function test() {
-//     for (var i = 0; i < quantityMultiplier; i++) {
-//         for (var j = 0; j < orderItemArray.length; j++) {
-//             itemsForOrder.push(orderItemArray[i])
-//         }
-//     }
-// }
-
-
-
-
-// // var submitButton = document.querySelector('input[type=button]')
-// // submitButton.addEventListener('.submit', submitForm)
-// // var form = document.querySelector('form')
-// // form.addEventListener('submit', submitForm)
-// // console.log("Form Submit")
-// // function submitForm(event) {
-// //     event.preventDefault()
-//     fetch('https://galvanize-eats-api.herokuapp.com/orders', settings)
-//         .then(function (responce) {
-//             console.log(responce)
-//         })
-// }
-
-
-//     var settings = {
-//         method: 'POST',
-//         headers: { 'content type': 'application/JSON' },
-//         body: JSON.stringify.data,
-//     }
-//         .then((data => data.JSON())
-
-
-
-
-
